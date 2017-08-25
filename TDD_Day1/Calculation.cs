@@ -15,12 +15,26 @@ namespace TDD_Day1
             this._lstProduct = lstProduct;
         }
 
-        public List<int> GetGroupSum(int groupCount, string fieldName)
+        public IEnumerable<int> GetGroupSum(int groupCount, Func<ProductModel, int> selector)
         {
-            var ret = new List<int>();
-            
+            if (groupCount < 0) throw new ArgumentException();
+            if (selector == null) throw new ArgumentException();
 
-            return ret;
+            var index = 0;
+            while (index <= this._lstProduct.Count)
+            {
+                if (groupCount == 0)
+                {
+                    yield return  0;
+                    yield break;
+                }
+                else
+                {
+                    yield return this._lstProduct.Skip(index).Take(groupCount).Sum(selector);
+                    index += groupCount;
+                }
+            }
+
         }
     }
 }

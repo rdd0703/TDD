@@ -24,13 +24,11 @@ namespace TDD_Day1.Tests
         {
             //arrange
             var target = new Calculation(_lstProduct);
-            var groupCount = 3;
-            var fieldName = "Cost";
 
             var expected = new List<int>() { 6, 15, 24, 21 };
 
             //act
-            var actual = target.GetGroupSum(groupCount, fieldName);
+            var actual = target.GetGroupSum(3, d => d.Cost).ToList();
 
             //assert
             CollectionAssert.AreEquivalent(expected, actual);
@@ -41,13 +39,11 @@ namespace TDD_Day1.Tests
         {
             //arrange
             var target = new Calculation(_lstProduct);
-            var groupCount = 4;
-            var fieldName = "Revenue";
 
             var expected = new List<int>() { 50, 66, 60 };
 
             //act
-            var actual = target.GetGroupSum(groupCount, fieldName);
+            var actual = target.GetGroupSum(4, d => d.Revenue).ToList();
 
             //assert
             CollectionAssert.AreEquivalent(expected, actual);
@@ -58,13 +54,11 @@ namespace TDD_Day1.Tests
         {
             //arrange
             var target = new Calculation(_lstProduct);
-            var groupCount = -1;
-            var fieldName = "Revenue";
 
             var expected = new ArgumentException();
 
             //act
-            Action act = () => target.GetGroupSum(groupCount, fieldName);
+            Action act = () => target.GetGroupSum(-1, d => d.Revenue).ToList();
 
             //assert
             act.ShouldThrow<ArgumentException>();
@@ -75,13 +69,11 @@ namespace TDD_Day1.Tests
         {
             //arrange
             var target = new Calculation(_lstProduct);
-            var groupCount = 4;
-            var fieldName = "NonExistField";
 
             var expected = new ArgumentException();
 
             //act
-            Action act = () => target.GetGroupSum(groupCount, fieldName);
+            Action act = () => target.GetGroupSum(4, null).ToList();
 
             //assert
             act.ShouldThrow<ArgumentException>();
@@ -92,13 +84,11 @@ namespace TDD_Day1.Tests
         {
             //arrange
             var target = new Calculation(_lstProduct);
-            var groupCount = 0;
-            var fieldName = "Any";
 
             var expected = new List<int>() { 0 };
 
             //act
-            var actual = target.GetGroupSum(groupCount, fieldName);
+            var actual = target.GetGroupSum(0, d=>d.Revenue).ToList();
 
             //assert
             CollectionAssert.AreEquivalent(expected, actual);
