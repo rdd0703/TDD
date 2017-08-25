@@ -1,6 +1,6 @@
 ﻿namespace TDD_Day1
 {
-    public class ScenarioModel
+    public class ProductModel
     {
         public int  Id { get; set; }
         public int Cost { get; set; }

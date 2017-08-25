@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TDD_Day1
 {
-    public class MyClass
+    public class Calculation
     {
-        private List<ScenarioModel> _data;
+        private List<ProductModel> _lstProduct;
 
-        public MyClass(List<ScenarioModel> lstScenario)
+        public Calculation(List<ProductModel> lstProduct)
         {
-            this._data = lstScenario;
+            this._lstProduct = lstProduct;
         }
 
         public List<int> GetGroupSum(int groupCount, string fieldName)
